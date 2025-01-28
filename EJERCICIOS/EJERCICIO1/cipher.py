@@ -30,6 +30,16 @@ print("binario a texto: " + contenido)
 contenido = conv.base64_a_ascii(contenido_base64)
 print("base64 a ascii: " + contenido)
 
-llave = keys.generar_llave_ascii()
+llave = keys.generar_llave_ascii(15)
 print("llave: " + llave)
+
+texto_cifrado = keys.cypher_dinamico(contenido)
+print("texto cifrado: " + texto_cifrado)
+
+texto_cifrado2 = keys.cypher_estatico(contenido)
+print("texto cifrado: " + texto_cifrado2)
+
+texto_descifrado = keys.decipher_texto(texto_cifrado, llave)
+print("texto descifrado: " + texto_descifrado)
+
 
