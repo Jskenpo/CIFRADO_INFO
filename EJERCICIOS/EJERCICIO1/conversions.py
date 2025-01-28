@@ -43,10 +43,7 @@ def binario_a_texto(binario):
     return ''.join(chr(int(binario[i:i+8], 2)) for i in range(0, len(binario), 8))
 
 def base64_a_ascii(base64_texto):
-    # Tabla Base64 estándar
-    tabla_base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
     
-    # Eliminar caracteres de relleno ('=')
     base64_texto = base64_texto.rstrip('=')
     
     # Convertir cada carácter Base64 a su valor decimal
