@@ -9,6 +9,5 @@ def generar_llave_ascii():
     caracteres_ascii = [chr(i) for i in range(32, 127)]
     
     # Generar una llave aleatoria seleccionando caracteres al azar
-    llave = ''.join(r.choice(caracteres_ascii) for _ in range(longitud))
+    llave = ''.join(r.choice(caracteres_ascii) for _ in range(int(longitud)))
     return llave
-

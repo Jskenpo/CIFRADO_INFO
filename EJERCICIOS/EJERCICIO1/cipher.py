@@ -29,3 +29,7 @@ print("binario a texto: " + contenido)
 
 contenido = conv.base64_a_ascii(contenido_base64)
 print("base64 a ascii: " + contenido)
+
+llave = keys.generar_llave_ascii()
+print("llave: " + llave)
+
