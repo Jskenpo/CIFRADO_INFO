@@ -15,10 +15,16 @@ contenido = leer_archivo_txt(ruta)
 print(contenido)
 
 contenido_binario = conv.texto_a_binario(contenido)
-print("texto abinario " + contenido_binario)
+print("texto abinario: " + contenido_binario)
 
 contenido_base64 = conv.binario_a_base64(contenido_binario)
-print("texto a base64 " + contenido_base64)
+print("texto a base64: " + contenido_base64)
 
 contenido_binario = conv.base64_a_binario(contenido_base64)
-print("base64 a binario " + contenido_binario)
+print("base64 a binario: " + contenido_binario)
+
+contenido = conv.binario_a_texto(contenido_binario)
+print("binario a texto: " + contenido)
+
+contenido = conv.base64_a_ascii(contenido_base64)
+print("base64 a ascii: " + contenido)

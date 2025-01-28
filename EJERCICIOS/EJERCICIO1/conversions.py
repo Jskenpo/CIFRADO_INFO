@@ -39,5 +39,29 @@ def binario_a_base64(binario):
     
     return caracteres_base64
 
+def binario_a_texto(binario):
+    return ''.join(chr(int(binario[i:i+8], 2)) for i in range(0, len(binario), 8))
+
+def base64_a_ascii(base64_texto):
+    # Tabla Base64 estándar
+    tabla_base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    
+    # Eliminar caracteres de relleno ('=')
+    base64_texto = base64_texto.rstrip('=')
+    
+    # Convertir cada carácter Base64 a su valor decimal
+    valores_decimales = [tabla_base64.index(c) for c in base64_texto]
+    
+    # Convertir a binario de 6 bits y unirlos en una sola cadena
+    binario = ''.join(f"{valor:06b}" for valor in valores_decimales)
+    
+    # Dividir la cadena binaria en bloques de 8 bits
+    bloques_bytes = [binario[i:i+8] for i in range(0, len(binario), 8)]
+    
+    # Convertir cada bloque de 8 bits a su carácter ASCII
+    ascii_texto = ''.join(chr(int(bloque, 2)) for bloque in bloques_bytes)
+    
+    return ascii_texto
+
 
 
