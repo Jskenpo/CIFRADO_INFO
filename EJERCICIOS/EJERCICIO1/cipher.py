@@ -12,20 +12,17 @@ def leer_archivo_txt(ruta_archivo):
         return f"Ocurrió un error al leer el archivo: {e}"
 
 def mcd(a, b):
-    """Calcula el Máximo Común Divisor (MCD) entre dos números."""
     while b:
         a, b = b, a % b
     return a
 
 def inverso_modular(a, m):
-    """Calcula el inverso modular de 'a' módulo 'm' usando el Algoritmo Extendido de Euclides."""
     for i in range(1, m):
         if (a * i) % m == 1:
             return i
     raise ValueError(f"No existe inverso modular para a={a} y m={m}")
 
 def cifrar_afin(texto, a, b):
-    """Cifra un texto usando el cifrado afín."""
     if mcd(a, 26) != 1:
         raise ValueError("El valor de 'a' debe ser coprimo con 26.")
     
@@ -42,7 +39,6 @@ def cifrar_afin(texto, a, b):
     return texto_cifrado
 
 def descifrar_afin(texto_cifrado, a, b):
-    """Descifra un texto cifrado usando el cifrado afín."""
     if mcd(a, 26) != 1:
         raise ValueError("El valor de 'a' debe ser coprimo con 26.")
     
@@ -98,6 +94,3 @@ print("texto cifrado: " + texto_cifrado)
 
 texto_descifrado = descifrar_afin(texto_cifrado, 5, 8)
 print("texto descifrado: " + texto_descifrado)
-
-
-
