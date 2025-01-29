@@ -1,5 +1,6 @@
 import conversions as conv
 import keys
+import algoritmos as alg
 
 def leer_archivo_txt(ruta_archivo):
     try:
@@ -11,49 +12,6 @@ def leer_archivo_txt(ruta_archivo):
     except Exception as e:
         return f"Ocurrió un error al leer el archivo: {e}"
 
-def mcd(a, b):
-    while b:
-        a, b = b, a % b
-    return a
-
-def inverso_modular(a, m):
-    for i in range(1, m):
-        if (a * i) % m == 1:
-            return i
-    raise ValueError(f"No existe inverso modular para a={a} y m={m}")
-
-def cifrar_afin(texto, a, b):
-    if mcd(a, 26) != 1:
-        raise ValueError("El valor de 'a' debe ser coprimo con 26.")
-    
-    texto_cifrado = ""
-    for char in texto:
-        if char.isalpha():  # Solo cifrar letras
-            base = ord('A') if char.isupper() else ord('a')
-            x = ord(char) - base
-            # Aplicar fórmula del cifrado afín
-            cifrado = (a * x + b) % 26
-            texto_cifrado += chr(cifrado + base)
-        else:
-            texto_cifrado += char  # Mantener caracteres no alfabéticos
-    return texto_cifrado
-
-def descifrar_afin(texto_cifrado, a, b):
-    if mcd(a, 26) != 1:
-        raise ValueError("El valor de 'a' debe ser coprimo con 26.")
-    
-    texto_descifrado = ""
-    a_inv = inverso_modular(a, 26)  # Obtener el inverso modular de 'a'
-    for char in texto_cifrado:
-        if char.isalpha():  # Solo descifrar letras
-            base = ord('A') if char.isupper() else ord('a')
-            x = ord(char) - base
-            # Aplicar fórmula del descifrado afín
-            descifrado = (a_inv * (x - b)) % 26
-            texto_descifrado += chr(descifrado + base)
-        else:
-            texto_descifrado += char  # Mantener caracteres no alfabéticos
-    return texto_descifrado
 
 
 
@@ -89,8 +47,8 @@ texto_descifrado = keys.decipher_texto(texto_cifrado, llave)
 print("texto descifrado: " + texto_descifrado)
 
 
-texto_cifrado = cifrar_afin(contenido, 5, 8)
+texto_cifrado = alg.cifrar_afin(contenido, 5, 8)
 print("texto cifrado: " + texto_cifrado)
 
-texto_descifrado = descifrar_afin(texto_cifrado, 5, 8)
+texto_descifrado = alg.descifrar_afin(texto_cifrado, 5, 8)
 print("texto descifrado: " + texto_descifrado)
