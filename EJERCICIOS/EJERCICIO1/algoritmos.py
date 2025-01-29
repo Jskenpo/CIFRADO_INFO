@@ -1,3 +1,4 @@
+
 def mcd(a, b):
     while b:
         a, b = b, a % b
@@ -58,3 +59,34 @@ def cifrar_cesar(texto, k):
 
 def descifrar_cesar(texto_cifrado, k):
     return cifrar_cesar(texto_cifrado, -k)  # Simplemente usamos la misma función con -k
+
+
+def cifrar_vigenere(texto):
+    clave = input("Ingrese la clave: ")
+    clave_extendida = clave * (len(texto) // len(clave)) + clave[:len(texto) % len(clave)]
+    texto_cifrado = ""
+    for i in range(len(texto)):
+        if texto[i].isalpha():  # Solo ciframos letras
+            base = ord('A') if texto[i].isupper() else ord('a')
+            desplazamiento = ord(clave_extendida[i].upper()) - ord('A')  # Convertir clave a número
+            nueva_letra = chr((ord(texto[i]) - base + desplazamiento) % 26 + base)
+            texto_cifrado += nueva_letra
+        else:
+            texto_cifrado += texto[i]  # No ciframos espacios o caracteres especiales
+    
+    return texto_cifrado
+
+def descifrar_vigenere(texto_cifrado):
+    clave = input("Ingrese la clave: ")
+    clave_extendida = clave * (len(texto_cifrado) // len(clave)) + clave[:len(texto_cifrado) % len(clave)]
+    texto_descifrado = ""
+    for i in range(len(texto_cifrado)):
+        if texto_cifrado[i].isalpha():  # Solo desciframos letras
+            base = ord('A') if texto_cifrado[i].isupper() else ord('a')
+            desplazamiento = ord(clave_extendida[i].upper()) - ord('A')
+            nueva_letra = chr((ord(texto_cifrado[i]) - base - desplazamiento) % 26 + base)
+            texto_descifrado += nueva_letra
+        else:
+            texto_descifrado += texto_cifrado[i]
+    
+    return texto_descifrado

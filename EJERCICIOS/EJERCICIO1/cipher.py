@@ -40,15 +40,27 @@ print("llave: " + llave)
 texto_cifrado = keys.cypher_dinamico(contenido)
 print("texto cifrado: " + texto_cifrado)
 
-texto_cifrado2 = keys.cypher_estatico(contenido)
-print("texto cifrado: " + texto_cifrado2)
+#texto_cifrado2 = keys.cypher_estatico(contenido)
+#print("texto cifrado: " + texto_cifrado2)
 
 texto_descifrado = keys.decipher_texto(texto_cifrado, llave)
 print("texto descifrado: " + texto_descifrado)
 
 
 texto_cifrado = alg.cifrar_afin(contenido, 5, 8)
-print("texto cifrado: " + texto_cifrado)
+print("texto cifrado afin: " + texto_cifrado)
 
 texto_descifrado = alg.descifrar_afin(texto_cifrado, 5, 8)
-print("texto descifrado: " + texto_descifrado)
+print("texto descifrado afin: " + texto_descifrado)
+
+texto_cifrado = alg.cifrar_cesar(contenido, 5)
+print("texto cifrado cesar: " + texto_cifrado)
+
+texto_descifrado = alg.descifrar_cesar(texto_cifrado, 5)
+print("texto descifrado cesar: " + texto_descifrado)
+
+texto_cifrado = alg.cifrar_vigenere(contenido)
+print("texto cifrado vigenere: " + texto_cifrado)
+
+texto_descifrado = alg.descifrar_vigenere(texto_cifrado)
+print("texto descifrado vigenere: " + texto_descifrado)
