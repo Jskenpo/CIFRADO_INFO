@@ -64,3 +64,8 @@ print("texto cifrado vigenere: " + texto_cifrado)
 
 texto_descifrado = alg.descifrar_vigenere(texto_cifrado)
 print("texto descifrado vigenere: " + texto_descifrado)
+
+analisis = alg.analizar_frecuencia(texto_cifrado)
+
+for letra, porcentaje in analisis.items():
+    print(f"Letra '{letra}': {porcentaje:.2f}%")
