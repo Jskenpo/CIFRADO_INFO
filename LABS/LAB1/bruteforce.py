@@ -41,21 +41,6 @@ def fuerza_bruta_afin(texto, k, frecuencia_espanol):
     
     return sorted(mejores, key=lambda x: x[1])[:k]
 
-def fuerza_bruta_vigenere(texto, k, frecuencia_espanol):
-    mejores = []
-    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
-    
-    for longitud in range(1, 7):
-        for combinacion in itertools.product(alfabeto, repeat=longitud):
-            clave = "PA" + "".join(combinacion)[2:]  # Iniciar con "PA"
-            texto_descifrado = alg.descifrar_vigenere(texto, clave)
-            metrica = calcular_metrica(texto_descifrado, frecuencia_espanol)
-            mejores.append((clave, metrica, texto_descifrado))
-    
-    return sorted(mejores, key=lambda x: x[1])[:k]
-
-
-
 
 def fuerza_bruta_vigenere(texto_cifrado, k, frecuencia_espanol):
     
