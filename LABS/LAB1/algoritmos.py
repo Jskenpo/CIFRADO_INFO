@@ -28,33 +28,36 @@ def cifrar_afin(texto, a, b):
     return texto_cifrado
 
 def descifrar_afin(texto_cifrado, a, b):
-    if mcd(a, 26) != 1:
-        raise ValueError("El valor de 'a' debe ser coprimo con 26.")
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    
+    if mcd(a, 27) != 1:
+        raise ValueError("El valor de 'a' debe ser coprimo con 27.")
     
     texto_descifrado = ""
-    a_inv = inverso_modular(a, 26)  # Obtener el inverso modular de 'a'
+    a_inv = inverso_modular(a, 27)  # Obtener el inverso modular de 'a'
+    
     for char in texto_cifrado:
-        if char.isalpha():  # Solo descifrar letras
-            base = ord('A') if char.isupper() else ord('a')
-            x = ord(char) - base
-            # Aplicar fórmula del descifrado afín
-            descifrado = (a_inv * (x - b)) % 26
-            texto_descifrado += chr(descifrado + base)
+        if char in alfabeto:  # Solo descifrar letras en español
+            x = alfabeto.index(char)
+            descifrado = (a_inv * (x - b)) % 27
+            texto_descifrado += alfabeto[descifrado]
         else:
             texto_descifrado += char  # Mantener caracteres no alfabéticos
+    
     return texto_descifrado
 
 
+
 def cifrar_cesar(texto, k):
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
     texto_cifrado = ""
     
     for char in texto:
-        if char.isalpha():  # Solo ciframos letras
-            base = ord('A') if char.isupper() else ord('a')  # Detectar mayúsculas o minúsculas
-            nueva_pos = (ord(char) - base + k) % 26  # Aplicar la fórmula del cifrado
-            texto_cifrado += chr(nueva_pos + base)  # Convertir de nuevo a carácter
+        if char in alfabeto:
+            nueva_pos = (alfabeto.index(char) + k) % 27  # 27 letras en el alfabeto
+            texto_cifrado += alfabeto[nueva_pos]
         else:
-            texto_cifrado += char  # Mantener caracteres especiales sin cifrar
+            texto_cifrado += char  # Mantener caracteres no alfabéticos
     
     return texto_cifrado
 
@@ -62,35 +65,36 @@ def descifrar_cesar(texto_cifrado, k):
     return cifrar_cesar(texto_cifrado, -k)  # Simplemente usamos la misma función con -k
 
 
-def cifrar_vigenere(texto):
-    clave = input("Ingrese la clave: ")
-    clave_extendida = clave * (len(texto) // len(clave)) + clave[:len(texto) % len(clave)]
+def cifrar_vigenere(texto, clave):
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    clave_extendida = (clave * (len(texto) // len(clave)) + clave[:len(texto) % len(clave)]).lower()
     texto_cifrado = ""
+
     for i in range(len(texto)):
-        if texto[i].isalpha():  # Solo ciframos letras
-            base = ord('A') if texto[i].isupper() else ord('a')
-            desplazamiento = ord(clave_extendida[i].upper()) - ord('A')  # Convertir clave a número
-            nueva_letra = chr((ord(texto[i]) - base + desplazamiento) % 26 + base)
+        if texto[i] in alfabeto:  # Solo cifrar letras del alfabeto español
+            desplazamiento = alfabeto.index(clave_extendida[i])  # Índice de la clave en el alfabeto
+            nueva_letra = alfabeto[(alfabeto.index(texto[i]) + desplazamiento) % 27]
             texto_cifrado += nueva_letra
         else:
-            texto_cifrado += texto[i]  # No ciframos espacios o caracteres especiales
-    
+            texto_cifrado += texto[i]  # Mantener caracteres no alfabéticos
+
     return texto_cifrado
 
-def descifrar_vigenere(texto_cifrado):
-    clave = input("Ingrese la clave: ")
-    clave_extendida = clave * (len(texto_cifrado) // len(clave)) + clave[:len(texto_cifrado) % len(clave)]
+def descifrar_vigenere(texto_cifrado, clave):
+    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    clave_extendida = (clave * (len(texto_cifrado) // len(clave)) + clave[:len(texto_cifrado) % len(clave)]).lower()
     texto_descifrado = ""
+
     for i in range(len(texto_cifrado)):
-        if texto_cifrado[i].isalpha():  # Solo desciframos letras
-            base = ord('A') if texto_cifrado[i].isupper() else ord('a')
-            desplazamiento = ord(clave_extendida[i].upper()) - ord('A')
-            nueva_letra = chr((ord(texto_cifrado[i]) - base - desplazamiento) % 26 + base)
+        if texto_cifrado[i] in alfabeto:  # Solo descifrar letras del alfabeto español
+            desplazamiento = alfabeto.index(clave_extendida[i])  # Índice de la clave en el alfabeto
+            nueva_letra = alfabeto[(alfabeto.index(texto_cifrado[i]) - desplazamiento) % 27]
             texto_descifrado += nueva_letra
         else:
-            texto_descifrado += texto_cifrado[i]
-    
+            texto_descifrado += texto_cifrado[i]  # Mantener caracteres no alfabéticos
+
     return texto_descifrado
+
 
 def analizar_frecuencia(texto):
     texto = texto.lower()  
