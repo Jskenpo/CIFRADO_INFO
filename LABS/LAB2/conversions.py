@@ -74,12 +74,25 @@ def base64_a_ascii(base64_texto):
     
     # Convertir a binario de 6 bits y unirlos en una sola cadena
     binario = ''.join(f"{valor:06b}" for valor in valores_decimales)
+
+    #impresión de los valores binarios por cada caracter
+    print("Valores binarios de 6 bits por cada caracter: ")
+    for valor in valores_decimales:
+        print(f"{valor:06b}")
+
+    print("Valores binarios concatenados: ")
+    print(binario)
     
     # Dividir la cadena binaria en bloques de 8 bits
     bloques_bytes = [binario[i:i+8] for i in range(0, len(binario), 8)]
-    
+
     # Convertir cada bloque de 8 bits a su carácter ASCII
     ascii_texto = ''.join(chr(int(bloque, 2)) for bloque in bloques_bytes)
+
+    #imprimir nueva division de bloques de 8 bits con su conversion a ascii
+    print("Nueva division de bloques de 8 bits: ")
+    for bloque in bloques_bytes:
+        print(f"{bloque} -> {chr(int(bloque, 2))}")
     
     return ascii_texto
 
