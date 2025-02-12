@@ -1,4 +1,5 @@
 import conversions as conv 
+import keys as k 
 
 texto = 'Hola, mundo!'
 print(f'Texto original: {texto}')
@@ -22,3 +23,9 @@ print(f'Texto en Base64: {base64}\n')
 print('----------------CONVERTIR BASE64 A ASCII----------------')
 texto = conv.base64_a_ascii(base64)
 print(f'Texto en ASCII: {texto}\n')
+
+#----------------CIFRADO ESTÁTICO----------------
+print('----------------CIFRADO ESTÁTICO----------------')
+texto = 'Hola, mundo!'
+texto_cifrado = k.cypher_estatico(texto)
+print(f'Texto cifrado: {texto_cifrado}\n')

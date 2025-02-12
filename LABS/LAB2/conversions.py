@@ -96,8 +96,7 @@ def base64_a_ascii(base64_texto):
     
     return ascii_texto
 
-
-
 def texto_a_base64(texto):
     binario = texto_a_binario(texto)
     return binario_a_base64(binario)
+
