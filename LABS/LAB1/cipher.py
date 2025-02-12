@@ -1,7 +1,8 @@
 import algoritmos as alg
 import bruteforce as bf
+import matplotlib.pyplot as plt
 
-# -------------------- CARGAR TEXTO --------------------
+
 def leer_archivo_txt(ruta_archivo):
     try:
         with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
@@ -12,7 +13,7 @@ def leer_archivo_txt(ruta_archivo):
         return f"Ocurrió un error al leer el archivo: {e}"
 
 # Ruta del archivo cifrado
-ruta = "Cifrados/vigenere.txt"
+ruta = "Cifrados/afines.txt"
 contenido = leer_archivo_txt(ruta)
 
 # Cargar frecuencia desde archivo CSV
@@ -20,6 +21,18 @@ frecuencia_espanol = bf.cargar_frecuencia_csv("sp_frequencies.csv")
 
 # Analizar frecuencia del texto original
 analisis = alg.analizar_frecuencia(contenido)
+
+# Graficar frecuencia del texto analizado
+plt.figure(figsize=(10, 5))
+plt.bar(analisis.keys(), analisis.values(), color="orange", alpha=0.7)
+
+plt.xlabel("Letras")
+plt.ylabel("Frecuencia (%)")
+plt.title("Frecuencia de Letras en el Texto Analizado")
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+plt.show()
+
+
 
 print("\nFrecuencia del texto cifrado:")
 for letra, porcentaje in analisis.items():
@@ -34,7 +47,7 @@ mejores_cesar = bf.fuerza_bruta_cesar(texto_cifrado, 3, frecuencia_espanol)
 print("\n Top 3 claves César:")
 for clave, metrica, descifrado in mejores_cesar:
     print(f"Clave {clave}: {descifrado} (Métrica: {metrica:.2f})")
-
+'''
 
 # Ejecutar fuerza bruta
 mejores_afin = bf.fuerza_bruta_afin(texto_cifrado, 3, frecuencia_espanol)
@@ -50,3 +63,5 @@ mejores_vigenere = bf.fuerza_bruta_vigenere(texto_cifrado, 3, frecuencia_espanol
 print("\n Top 3 claves Vigenère:")
 for clave, metrica, descifrado in mejores_vigenere:
     print(f"Clave {clave}: {descifrado} (Métrica: {metrica:.2f})")
+
+    '''
