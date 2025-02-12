@@ -2,6 +2,19 @@ import conversions as conv
 
 texto = 'Hola, mundo!'
 print(f'Texto original: {texto}')
+
+#----------------CONVERTIR TEXTO A BINARIO----------------
+print('----------------CONVERTIR TEXTO A BINARIO----------------')
 binario = conv.texto_a_binario(texto)
 print(f'Texto en binario: {binario}')
 
+
+#----------------CONVERTIR BINARIO A ASCII----------------
+print('----------------CONVERTIR BINARIO A ASCII----------------')
+texto = conv.binario_a_texto(binario)
+print(f'Texto en ASCII: {texto}')
+
+#----------------CONVERTIR TEXTO A BASE64----------------
+print('----------------CONVERTIR TEXTO A BASE64----------------')
+base64 = conv.texto_a_base64(texto)
+print(f'Texto en Base64: {base64}')
