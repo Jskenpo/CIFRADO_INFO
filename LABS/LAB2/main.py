@@ -1,7 +1,7 @@
 import conversions as conv 
 import keys as k 
 
-texto = 'Hola, mundo!'
+texto = 'Esto es una prueba de cifrado'
 print(f'Texto original: {texto}')
 
 #----------------CONVERTIR TEXTO A BINARIO----------------
@@ -26,6 +26,6 @@ print(f'Texto en ASCII: {texto}\n')
 
 #----------------CIFRADO ESTÁTICO----------------
 print('----------------CIFRADO ESTÁTICO----------------')
-texto = 'Hola, mundo!'
+texto = 'Esto es una prueba de cifrado'
 texto_cifrado = k.cypher_estatico(texto)
 print(f'Texto cifrado: {texto_cifrado}\n')
