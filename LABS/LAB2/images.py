@@ -26,3 +26,13 @@ def descifrar_imagen(base64_cifrado, llave):
     # Guardar la imagen
     with open("imagen_recuperada.png", "wb") as f:
         f.write(imagen_original)
+
+
+def cargar_imagen(ruta, size=None):
+    img = Image.open(ruta).convert("RGB")  # Convertir a RGB
+    if size:
+        img = img.resize(size)  # Ajustar tamaño si es necesario
+    return np.array(img)
+
+def aplicar_xor(imagen1, imagen2):
+    return np.bitwise_xor(imagen1, imagen2)
