@@ -1,31 +1,14 @@
 import conversions as conv 
 import keys as k 
+import images as img
 
-texto = 'Esto es una prueba de cifrado'
-print(f'Texto original: {texto}')
+image_path = "imas/p1.png"
 
-#----------------CONVERTIR TEXTO A BINARIO----------------
-print('----------------CONVERTIR TEXTO A BINARIO----------------')
-binario = conv.texto_a_binario(texto)
-print(f'Texto en binario: {binario}\n')
+# Convertir la imagen a base64
+image_base64 = img.image_to_base64(image_path)
 
-#----------------CONVERTIR BINARIO A ASCII----------------
-print('----------------CONVERTIR BINARIO A ASCII----------------')
-texto = conv.binario_a_texto(binario)
-print(f'Texto en ASCII: {texto}\n')
+llave = "cifrados_2025"
 
-#----------------CONVERTIR TEXTO A BASE64----------------
-print('----------------CONVERTIR TEXTO A BASE64----------------')
-base64 = conv.texto_a_base64(texto)
-print(f'Texto en Base64: {base64}\n')
+# Descifrar la imagen
+img.descifrar_imagen(image_base64, llave)
 
-#----------------CONVERTIR BASE64 A ASCII----------------
-print('----------------CONVERTIR BASE64 A ASCII----------------')
-texto = conv.base64_a_ascii(base64)
-print(f'Texto en ASCII: {texto}\n')
-
-#----------------CIFRADO ESTÁTICO----------------
-print('----------------CIFRADO ESTÁTICO----------------')
-texto = 'Esto es una prueba de cifrado'
-texto_cifrado = k.cypher_estatico(texto)
-print(f'Texto cifrado: {texto_cifrado}\n')

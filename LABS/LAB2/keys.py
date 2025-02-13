@@ -1,15 +1,8 @@
 import conversions as conv
 import random as r
 
-def xor_binario(binario1, binario2):
-
-    #imprimir paso a paso la operacion xor
-    print("Operacion XOR: ")
-    for bit1, bit2 in zip(binario1, binario2):
-        print(f"{bit1} XOR {bit2} = {int(bit1) ^ int(bit2)}")
-
-
-    return ''.join('1' if bit1 != bit2 else '0' for bit1, bit2 in zip(binario1, binario2))
+def xor_binario(binario, llave):
+    return ''.join(str(int(b) ^ int(k)) for b, k in zip(binario, llave))
 
 def generar_llave_ascii(longitud):
     
@@ -43,20 +36,11 @@ def cypher_estatico(texto):
 
     llave = llave * (len(texto) // len(llave)) + llave[:len(texto) % len(llave)]
 
-    print ("Llave: ")
-    print(llave + "\n")
-
-    print ("Texto a binario : ")
     texto_binario = conv.texto_a_binario(texto)
 
-    print ("\nLlave a binario : ")
     llave_binario = conv.texto_a_binario(llave)
 
-    print ("\nTexto cifrado con XOR: ")
     texto_cifrado = xor_binario(texto_binario, llave_binario)
 
-    print ("\nTexto cifrado: ")
-    print(texto_cifrado + "\n")
-
-    print ("Texto cifrado a ascii: ")
-    return conv.binario_a_texto(texto_cifrado)
+   
+    return texto_cifrado
