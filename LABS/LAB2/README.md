@@ -334,3 +334,89 @@ Texto: `Esto es una prueba de cifrado`
 Llave: `perro`
 Salida cifrada:
 `0011010100010110000001100001110101001111000101010001011001010010000001110000000100010001010001010000001000000000000110100001010100000111000100110101001000001011000101010100010100010001000110110000100100000010000001000001011000011101`
+
+## LABORATORIO 2 PARTE B
+
+### Desifrar imágen encriptada con clave "cifrados_2025"
+
+Proceso:
+
+1. Convertir imágen corrupta a base 64
+2. Convertir clave e imágen a binario
+3. Aplicar xor con los dos textos binarios
+4. Convertir binario a bytes
+5. Recuperar imágen
+
+```def descifrar_imagen(base64_cifrado, llave):
+    # Convertir Base64 a binario
+    binario_cifrado = conv.base64_a_binariox(base64_cifrado)
+
+    # Expandir la llave para igualar la longitud del binario cifrado
+    llave_binaria = ''.join(format(ord(c), '08b') for c in (llave * (len(binario_cifrado) // len(llave)) + llave[:len(binario_cifrado) % len(llave)]))
+
+    # Aplicar XOR
+    binario_descifrado = k.xor_binario(binario_cifrado, llave_binaria)
+
+    # Convertir binario a bytes
+    imagen_original = conv.binario_a_bytes(binario_descifrado)
+
+    # Guardar la imagen
+    with open("imagen_recuperada.png", "wb") as f:
+        f.write(imagen_original)
+```
+
+#### Imágen descifrada
+
+![Imágen descifrada](./imagen_recuperada.png)
+
+<b> ¿Porque al aplicar XOR con una llave de texto la imagén se corrompe? </b>
+<br>
+<br>
+Esto puede suceder debido a que es posible que mediante el xor se cambien los datos del encabezado de la imágen, por o que puede resultar en una imagen irrecnocible o inclusio se tiene la posibilidad de no poder visuelizarla.
+
+### Combinar 2 imágenes y aplicar xor entre ellas.
+
+Proceso:
+
+1. Cargar las imágenes con PIL Image.open y las convierte a RGB
+2. Se cambia el tamaño de la imagen llave, en este caso shanks.jpg
+3. Aplicar XOR entre las imágenes utilizando numpy
+4. crear la nueva imágen a partir del XOR resultante
+5. Guardar la imágen.
+
+```def cargar_imagen(ruta, size=None):
+    img = Image.open(ruta).convert("RGB")  # Convertir a RGB
+    if size:
+        img = img.resize(size)  # Ajustar tamaño si es necesario
+    return np.array(img)
+
+def aplicar_xor(imagen1, imagen2):
+    return np.bitwise_xor(imagen1, imagen2)
+
+#convertir a imagen 
+imagen_xor_pil = Image.fromarray(imagen_xor)
+
+# Guardar la imagen
+imagen_xor_pil.save("imagen_xor.png")
+```
+
+#### Imágen base
+
+![Imágen descifrada](./imas/luffy.jpg)
+
+#### Imágen LLave
+
+![Imágen descifrada](./imas/shanks.jpeg)
+
+#### Imágen XOR
+
+![Imágen descifrada](./imagen_xor.png)
+
+<b>¿Qué inconvenientes encontro al momento de realizar el xor?</b>
+<br>
+<br>
+Al aplicar XOR en las dos imágenes, la imagen resultante fue una combinación entre las dos anteriores con colores distintos a los originales.
+
+## CONVERSACIÓN CON CHAT GPT
+
+<a href="https://chatgpt.com/share/67aecebf-07bc-8006-b53a-8a1a8dd91eb3">Link de conversación</a>

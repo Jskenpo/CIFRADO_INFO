@@ -27,7 +27,6 @@ def descifrar_imagen(base64_cifrado, llave):
     with open("imagen_recuperada.png", "wb") as f:
         f.write(imagen_original)
 
-
 def cargar_imagen(ruta, size=None):
     img = Image.open(ruta).convert("RGB")  # Convertir a RGB
     if size:
