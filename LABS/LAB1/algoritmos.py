@@ -48,18 +48,19 @@ def descifrar_afin(texto_cifrado, a, b):
 
 
 
-def cifrar_cesar(texto, k):
-    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
-    texto_cifrado = ""
+def cifrar_cesar(text: str, shift: int) -> str:
+    shift = shift % 26
+    encrypted = ""
     
-    for char in texto:
-        if char in alfabeto:
-            nueva_pos = (alfabeto.index(char) + k) % 27  # 27 letras en el alfabeto
-            texto_cifrado += alfabeto[nueva_pos]
+    for char in text:
+        if 'a' <= char <= 'z':
+            encrypted += chr(((ord(char) - ord('a') + shift) % 26) + ord('a'))
+        elif 'A' <= char <= 'Z':
+            encrypted += chr(((ord(char) - ord('A') + shift) % 26) + ord('A'))
         else:
-            texto_cifrado += char  # Mantener caracteres no alfabéticos
+            encrypted += char
     
-    return texto_cifrado
+    return encrypted
 
 def descifrar_cesar(texto_cifrado, k):
     return cifrar_cesar(texto_cifrado, -k)  # Simplemente usamos la misma función con -k

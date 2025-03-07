@@ -5,11 +5,11 @@ import pandas as pd
 
 def cargar_frecuencia_csv(archivo):
     df = pd.read_csv(archivo)
-    frecuencia = {row["Letter"].lower(): float(row["Spanish_Frequency"].strip('%')) for _, row in df.iterrows()}
+    frecuencia = {row["Letter"].lower(): float(row["English_Frequency"].strip('%')) for _, row in df.iterrows()}
     return frecuencia
 
 def limpiar_texto(texto):
-    alfabeto = "abcdefghijklmnñopqrstuvwxyz"
+    alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     texto = texto.lower()
     return ''.join(c for c in texto if c in alfabeto)
 

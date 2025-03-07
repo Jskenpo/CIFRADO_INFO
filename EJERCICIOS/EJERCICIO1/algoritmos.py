@@ -58,9 +58,17 @@ def cifrar_cesar(texto, k):
     return texto_cifrado
 
 def descifrar_cesar(texto_cifrado, k):
-    return cifrar_cesar(texto_cifrado, -k)  # Simplemente usamos la misma función con -k
+    alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    descifrado = ""
 
+    for letra in texto_cifrado:
+        if letra in alfabeto:
+            indice = (alfabeto.index(letra) - k) % 26
+            descifrado += alfabeto[indice]
+        else:
+            descifrado += letra  # Mantiene caracteres que no son letras
 
+    return descifrado
 def cifrar_vigenere(texto):
     clave = input("Ingrese la clave: ")
     clave_extendida = clave * (len(texto) // len(clave)) + clave[:len(texto) % len(clave)]
