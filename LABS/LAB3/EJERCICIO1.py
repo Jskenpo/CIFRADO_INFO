@@ -93,23 +93,20 @@ print("Cifrado y descifrado completado 🚀")
 
 #comparar imagenes con matplotlib
 
-# 🔹 Cargar imágenes
 image_paths = {
     "Original": "tux.ppm",
     "Cifrado ECB": "imagen_ecb.ppm",
     "Cifrado CBC": "imagen_cbc.ppm"
 }
 
-# 🔹 Crear figura
 fig, axes = plt.subplots(1, 3, figsize=(10, 5))
 
-# 🔹 Mostrar imágenes
 for ax, (title, path) in zip(axes, image_paths.items()):
     img = Image.open(path).convert("L")  # Convertir a escala de grises
     ax.imshow(img, cmap="gray")
     ax.set_title(title)
     ax.axis("off")  # Ocultar ejes
 
-# 🔹 Mostrar comparación
+
 plt.tight_layout()
 plt.show()
